@@ -48,3 +48,29 @@ python3 ranking.py tarifas.json datos.json --csv ranking.csv
   a Excel es mostra com a comentari de cada cel·la; en canvi cada resultat
   inclou un `desglossament` (dict) amb els mateixos conceptes en forma
   estructurada.
+
+## Tests i CI
+
+```bash
+pip install -r requirements-dev.txt
+pytest -v
+```
+
+- `tests/test_engine.py`, `tests/test_calcular.py` — tests unitaris amb dades
+  sintètiques, sempre actius (també a CI vía `.github/workflows/tests.yml`,
+  que corre a cada push/PR amb Python 3.10 i 3.12).
+- `tests/test_validacio_excel.py` — validació completa contra un Excel real
+  ja calculat. **S'auto-omet** si no troba `tests/fixtures/{tarifas,datos,facturas_referencia}.json`,
+  perquè aquestes fixtures contenen dades de consum real i **no es pugen al
+  repositori** (veure `.gitignore`). Per generar-les i validar en local:
+
+  ```bash
+  python3 extract_tarifas.py el_teu_fitxer.xlsm --out tests/fixtures/tarifas.json
+  python3 extract_datos.py   el_teu_fitxer.xlsm --out tests/fixtures/datos.json
+  python3 tools/export_referencia.py el_teu_fitxer.xlsm
+  pytest -v tests/test_validacio_excel.py
+  ```
+
+  Les 2 discrepàncies conegudes (Repsol i Esmiluz, un sol mes cadascuna —
+  veure secció anterior) estan excloses explícitament al test, amb el motiu
+  documentat a `DISCREPANCIES_CONEGUDES`.

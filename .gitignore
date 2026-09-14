@@ -216,3 +216,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Fitxers de treball generats localment (es regeneren amb extract_tarifas.py /
+# extract_datos.py). tarifas.json és pública (ve del full Tarifas, sense dades
+# personals) però es regenera igualment; datos.json SÍ pot contenir el teu
+# consum real, així que no es puja.
+/tarifas.json
+/datos.json
+/ranking.csv
+/ranking_validacio.csv
+
+# Fixtures de test amb dades de consum real — mai es pugen (veure
+# tools/export_referencia.py i tests/test_validacio_excel.py)
+/tests/fixtures/*.json
+
+__pycache__/
+*.pyc
+.pytest_cache/
