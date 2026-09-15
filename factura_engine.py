@@ -242,7 +242,7 @@ def calcular_descuento_despues_iva(kwh_p1, precio_p1, kwh_p2, precio_p2, kwh_p3,
     total_kwh = kwh_p1 + kwh_p2 + kwh_p3
     if (tipo_franja == "Sun-Club" and abs(total_kwh - (
             (kwh_promo_sunclub or 0) + (kwh_gratis_sunclub or 0) + (kwh_no_promo_sunclub or 0))) < 1):
-        return (precio_p1 * kwh_promo_sunclub - precio_p3 * kwh_promo_sunclub + precio_p1 * kwh_gratis_sunclub) / 100
+        return (precio_p1 * kwh_promo_sunclub - precio_p3 * kwh_promo_sunclub + precio_p1 * (kwh_gratis_sunclub or 0)) / 100
     return 0.0
 
 
