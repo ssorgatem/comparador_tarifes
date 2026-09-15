@@ -112,8 +112,8 @@ DATOS_JSON_FIELD_MAP = {
 CAMPS_SENSE_ORIGEN_A_GRINCH = {"kwh_gratis_sunclub": None, "autoconsumo_estimado": None}
 
 
-def to_datos_json(gdf, out="datos.json", alquiler_contador_dia=0.02663, bono_social_dia=0.0246885,
-                   potencia_fotovoltaica_kw=3, impuesto_electrico_pct=5.1127, iva_pct=21):
+def to_datos_json(gdf, out="datos.json", alquiler_contador_dia=LLOGUER, bono_social_dia=BONOS,
+                   potencia_fotovoltaica_kw=POTENCIAFV, impuesto_electrico_pct=IMPE, iva_pct=IVA):
     """
     Converteix el DataFrame que retorna grinch() al mateix format que
     `extract_datos.py` genera llegint el full "Datos" de l'Excel -- mateixa
