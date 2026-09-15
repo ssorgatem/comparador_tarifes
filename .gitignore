@@ -235,3 +235,5 @@ __pycache__/
 csvs/
 mes/
 datos.xlsx
+credentials.py
+edistribucion.*
